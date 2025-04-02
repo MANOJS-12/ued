@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Module</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar {
+            background: #007BFF;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .navbar a:hover {
+            background: #0056b3;
+            border-radius: 5px;
+        }
+        .chat-container {
+            width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+        .chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("chatInput");
+            let message = input.value.trim();
+            if (message !== "") {
+                let chatBox = document.getElementById("chatBox");
+                
+                // Display user message
+                let userMsgDiv = document.createElement("div");
+                userMsgDiv.textContent = "You: " + message;
+                userMsgDiv.style.padding = "10px";
+                userMsgDiv.style.margin = "5px 0";
+                userMsgDiv.style.background = "#e1f5fe";
+                userMsgDiv.style.borderRadius = "5px";
+                chatBox.appendChild(userMsgDiv);
+                
+                input.value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+                botResponse(message);
+            }
+        }
+
+        function botResponse(userMessage) {
+            let chatBox = document.getElementById("chatBox");
+
+            let botMsgDiv = document.createElement("div");
+            botMsgDiv.textContent = "Bot: Hello, you said: " + userMessage;
+            botMsgDiv.style.padding = "10px";
+            botMsgDiv.style.margin = "5px 0";
+            botMsgDiv.style.background = "#f0f0f0";
+            botMsgDiv.style.borderRadius = "5px";
+            chatBox.appendChild(botMsgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
