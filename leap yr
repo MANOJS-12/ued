@@ -1,0 +1,28 @@
+import React, { useState } from 'react';
+
+function App() {
+  const [year, setYear] = useState('');
+  const [result, setResult] = useState('');
+
+  return (
+    <div>
+      <h1>Leap Year Checker</h1>
+      <input 
+        type="number" 
+        value={year} 
+        onChange={(e) => setYear(e.target.value)} 
+        placeholder="Enter year" 
+      />
+      <button onClick={() => 
+        setResult((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) 
+          ? `${year} is a leap year.` 
+          : `${year} is not a leap year.`)
+      }>
+        Check
+      </button>
+      <p>{result}</p>
+    </div>
+  );
+}
+
+export default App;
