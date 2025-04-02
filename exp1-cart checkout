@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .cart {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffeb3b;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Online Store</h1>
+        <div class="product" onclick="addToCart('Item 1', 10)">Item 1 - $10</div>
+        <div class="product" onclick="addToCart('Item 2', 15)">Item 2 - $15</div>
+        <div class="product" onclick="addToCart('Item 3', 20)">Item 3 - $20</div>
+        
+        <div class="cart">
+            <h2>Cart</h2>
+            <p id="cart-items">No items</p>
+            <p>Total: $<span id="total">0</span></p>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+    
+    <script>
+        let cart = [], total = 0;
+        function addToCart(name, price) {
+            cart.push(name); total += price;
+            document.getElementById("cart-items").textContent = cart.join(", ");
+            document.getElementById("total").textContent = total;
+        }
+        function checkout() {
+            alert(cart.length ? "Thank you for your purchase!" : "Cart is empty!");
+            cart = []; total = 0;
+            document.getElementById("cart-items").textContent = "No items";
+            document.getElementById("total").textContent = total;
+        }
+    </script>
+</body>
+</html>
